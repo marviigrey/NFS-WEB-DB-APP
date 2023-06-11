@@ -21,3 +21,59 @@ v). Export the mounts for webservers’ subnet cidr to connect as clients. For s
 vi). Ensure permissions needed to read,write and execute on our nfs files are allowed.
 vi) lastly we Configure access to NFS for clients within the same subnet.
 NOTE ensure port TCP111,UDP111 and UDP2049 are all open on EC2-sg for our nfs-server.
+
+2. CONFIGURING DATABASE SERVER:
+1). To install MySQL server and perform the required tasks, please follow the instructions below:
+
+Step 1: Install MySQL Server
+
+Log in to your server or virtual machine.
+Update the package list:
+
+sudo apt update
+
+Install the MySQL server package:
+
+sudo apt install mysql-server
+
+Step 2: Configure MySQL Server
+
+During the installation process, you should be prompted to set the root password for MySQL. Choose a strong password and remember it.
+
+Once the installation is complete, run the following command to secure the MySQL installation:
+
+sudo mysql_secure_installation
+
+You'll be prompted to answer a series of questions. It's recommended to answer "Y" to all of them unless you have specific requirements.
+
+Step 3: Create the Database and User
+
+Log in to the MySQL server as the root user:
+
+sudo mysql -u root -p
+
+Enter the root password when prompted.
+
+Create the database:
+
+CREATE DATABASE tooling;
+
+Create the user:
+
+CREATE USER 'webaccess'@'webservers_subnet_cidr' IDENTIFIED BY 'password';
+
+Replace 'webservers_subnet_cidr' with the actual subnet CIDR of your web servers and 'password' with a strong password for the user.
+
+Grant permissions to the user on the database:
+
+GRANT ALL PRIVILEGES ON tooling.* TO 'webaccess'@'webservers_subnet_cidr';
+
+Flush the privileges to apply the changes:
+
+FLUSH PRIVILEGES;
+
+Exit the MySQL shell:
+
+EXIT;
+
+
