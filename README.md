@@ -14,4 +14,10 @@ server to confirm volumes.
       sudo yum install lvm2 -y
       #confirm installation using "sudo pvs" or "sudo vgs"
    - After installing,we create PVs,VGs, and LVs.
-ii). 
+ii). we create mount points for our  directories on the /mnt directory.
+iii) Mount the logical volumes on the mount points
+iv) install nfs client.
+v). Export the mounts for webservers’ subnet cidr to connect as clients. For simplicity, you will install your all three Web Servers inside the same subnet, but in production set up you would probably want to separate each tier inside its own subnet for higher level of security.
+vi). Ensure permissions needed to read,write and execute on our nfs files are allowed.
+vi) lastly we Configure access to NFS for clients within the same subnet.
+NOTE ensure port TCP111,UDP111 and UDP2049 are all open on EC2-sg for our nfs-server.
