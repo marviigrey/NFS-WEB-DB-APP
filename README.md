@@ -76,4 +76,17 @@ Exit the MySQL shell:
 
 EXIT;
 
+3. CONFIGURING WEBSERVER:
+- we install nfs client 
+- mount /var/www of our webserver to the /mnt/apps on our NFS server
+- mount /var/log/httpd of our webserver to /mnt/logs on our NFS server
+- Verify that NFS was mounted successfully by running df -h. Make sure that the changes will persist on Web Server after reboot.
+- Install Remi’s repository, Apache and PHP
+- Update the website’s configuration to connect to the database (in /var/www/html/functions.php file). Apply tooling-db.sql script to your database using this command mysql -h <databse-private-ip> -u <db-username> -p <db-pasword> < tooling-db.sql
 
+Create in MySQL a new admin user with username: myuser and password: password:
+
+INSERT INTO ‘users’ (‘id’, ‘username’, ‘password’, ’email’, ‘user_type’, ‘status’) VALUES
+-> (1, ‘myuser’, ‘5f4dcc3b5aa765d61d8327deb882cf99’, ‘user@mail.com’, ‘admin’, ‘1’);
+
+Open the website in your browser http://<Web-Server-Public-IP-Address-or-Public-DNS-Name>/index.php and make sure you can login into the websute with myuser user.
