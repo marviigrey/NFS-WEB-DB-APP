@@ -90,4 +90,4 @@ INSERT INTO ‘users’ (‘id’, ‘username’, ‘password’, ’email’, 
 -> (1, ‘myuser’, ‘5f4dcc3b5aa765d61d8327deb882cf99’, ‘user@mail.com’, ‘admin’, ‘1’);
 
 Open the website in your browser http://<Web-Server-Public-IP-Address-or-Public-DNS-Name>/index.php and make sure you can login into the website with myuser user.
-We will also need a load balancer to help navigate or control traffic coming to our webservers. We will make use of the apache load balancer,we install it and configure it to direct traffic to the ip address of our web-servers.
+We will also need a load balancer to help navigate or control traffic coming to our webservers. We will make use of the apache load balancer,we install it and configure it to direct traffic to the ip address of our web-servers.  
